@@ -9,13 +9,22 @@
       <a href="#" class="scroll-up-btn"> 
          <i class="fa-solid fa-arrow-up"></i>
       </a>
-
    </div>
 </template>
 
 <script>
 import Header from './components/MainHeader.vue';
 import Main from './components/MainContent.vue';
+
+// Import DayJs
+import dayjs from 'dayjs';
+var localeData = require('dayjs/plugin/localeData');
+dayjs.extend(localeData);
+dayjs().localeData();
+
+// IT version
+// require('dayjs/locale/it')
+// dayjs.locale('it')
 
 export default {
    name: 'App',

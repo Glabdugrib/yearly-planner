@@ -9,7 +9,7 @@
       <div class="header-menu">
          <a href="#" class="header-menu-btn">
             <i class="fa-solid fa-list-check"></i>
-            <span>Other Project</span>
+            <span>Other Projects</span>
          </a>
          <a href="#" class="header-menu-btn">
             <i class="fa-solid fa-right-to-bracket"></i>

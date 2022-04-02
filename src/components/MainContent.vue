@@ -4,11 +4,11 @@
 
          <!-- Titolo e controlli -->
          <section class="year">
-            <button class="year-btn year-down">
+            <button class="year-btn year-down" @click="yearDecrement">
                <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <h2 class="year-title">Year 2022</h2>
-            <button class="year-btn year-up">
+            <h2 class="year-title">Year {{ year }}</h2>
+            <button class="year-btn year-up" @click="yearIncrement">
                <i class="fa-solid fa-chevron-right"></i>
             </button>
             <button class="add-event-btn">
@@ -23,10 +23,8 @@
             <div class="planner-calendar">
                <Month
                   v-for="(month,i) in 12" :key="i"
+                  :month="months[i]"
                />
-               <!-- <div class="month-card" v-for="(month,i) in 12" :key="i">
-
-               </div> -->
             </div>
          </section>
       </div>
@@ -35,11 +33,35 @@
 
 <script>
 import Month from './MonthCard.vue';
+import dayjs from 'dayjs';
 
 export default {
    name: 'MainContent',
    components: {
       Month
+   },
+   data() {
+      return {
+         year: 2022, // da rendere dinamico
+         months: []
+      }
+   },
+   methods: {
+      yearIncrement: function() {
+         this.year++;
+      },
+      yearDecrement: function() {
+         this.year--;
+      },
+      capitalizeString: function(string) {
+         return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+   },
+   mounted() {
+      const months = dayjs.months();
+      months.forEach(month => { // italian words come lowercase
+         this.months.push( this.capitalizeString(month) );
+      });
    }
 }
 </script>
@@ -58,7 +80,7 @@ main {
       margin-bottom: 25px;
 
       .year-btn {
-         padding: 0 5px;
+         padding: 3px 5px 0 5px;
          font-size: 21px;
          color: rgba($color: white, $alpha: 0.5);
 
