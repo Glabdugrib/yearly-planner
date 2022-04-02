@@ -3,6 +3,8 @@
 
       <Header />
 
+      <Main />
+
       <!-- Da far apparire solo in modalità desktop (non mobile) -->
       <a href="#" class="scroll-up-btn"> 
          <i class="fa-solid fa-arrow-up"></i>
@@ -13,12 +15,14 @@
 
 <script>
 import Header from './components/MainHeader.vue';
+import Main from './components/MainContent.vue';
 
 export default {
-  name: 'App',
-  components: {
-    Header
-  }
+   name: 'App',
+   components: {
+      Header,
+      Main
+   }
 }
 </script>
 
@@ -53,7 +57,9 @@ body {
    background-color: $main-bg;
    cursor: default;
    position: relative;
-   height: 200vh;
+   // height: 200vh;
+   padding: 0 2.5vw; // è corretto?
+   margin-bottom: 60px;
 }
 
 .container {
@@ -69,6 +75,12 @@ img {
 a {
    color: currentColor;
    text-decoration: none;
+}
+
+button {
+   border: none;
+   background-color: transparent;
+   cursor: pointer;
 }
 
 .scroll-up-btn {

@@ -33,7 +33,7 @@ header {
    display: flex;
    flex-direction: column;
    justify-content: center;
-   border: 1px solid white;
+   // border: 1px solid red;
 
    .main-title {
       display: flex;
@@ -113,6 +113,7 @@ header {
    }
 }
 
+// S
 @media screen and (max-width: 478px) {
    header {
 
@@ -120,6 +121,10 @@ header {
 
          &:hover {
             letter-spacing: initial;
+         }
+
+         .logo-wrapper {
+            width: 60px;
          }
       }
    }
