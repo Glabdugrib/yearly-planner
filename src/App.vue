@@ -23,8 +23,8 @@ dayjs.extend(localeData);
 dayjs().localeData();
 
 // IT version
-// require('dayjs/locale/it')
-// dayjs.locale('it')
+// require('dayjs/locale/it');
+// dayjs.locale('it');
 
 export default {
    name: 'App',

@@ -24,6 +24,8 @@
                <Month
                   v-for="(month,i) in 12" :key="i"
                   :month="months[i]"
+                  :monthNum="i"
+                  :year="year"
                />
             </div>
          </section>
@@ -42,7 +44,7 @@ export default {
    },
    data() {
       return {
-         year: 2022, // da rendere dinamico
+         year: 0,
          months: []
       }
    },
@@ -62,6 +64,8 @@ export default {
       months.forEach(month => { // italian words come lowercase
          this.months.push( this.capitalizeString(month) );
       });
+
+      this.year = dayjs().year();
    }
 }
 </script>
@@ -113,7 +117,7 @@ main {
       gap: 5px;
       
       .planner-legend {
-         width: 250px;
+         min-width: 250px;
          min-height: 200px;
          border: 1px solid yellow;
       }
