@@ -21,9 +21,12 @@ import dayjs from 'dayjs';
 var localeData = require('dayjs/plugin/localeData');
 dayjs.extend(localeData);
 dayjs().localeData();
+var isToday = require('dayjs/plugin/isToday');
+dayjs.extend(isToday);
+dayjs().isToday();
 
 // IT version
-// require('dayjs/locale/it');
+// require('dayjs/locale/it'); // aggiungere anche today basato sul locale time
 // dayjs.locale('it');
 
 export default {

@@ -7,7 +7,7 @@
             <button class="year-btn year-down" @click="yearDecrement">
                <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <h2 class="year-title">Year {{ year }}</h2>
+            <h2 class="year-title">Year {{ displayedYear }}</h2>
             <button class="year-btn year-up" @click="yearIncrement">
                <i class="fa-solid fa-chevron-right"></i>
             </button>
@@ -25,7 +25,7 @@
                   v-for="(month,i) in 12" :key="i"
                   :month="months[i]"
                   :monthNum="i"
-                  :year="year"
+                  :year="displayedYear"
                />
             </div>
          </section>
@@ -44,16 +44,16 @@ export default {
    },
    data() {
       return {
-         year: 0,
+         displayedYear: 0,
          months: []
       }
    },
    methods: {
       yearIncrement: function() {
-         this.year++;
+         this.displayedYear++;
       },
       yearDecrement: function() {
-         this.year--;
+         this.displayedYear--;
       },
       capitalizeString: function(string) {
          return string.charAt(0).toUpperCase() + string.slice(1);
@@ -65,7 +65,7 @@ export default {
          this.months.push( this.capitalizeString(month) );
       });
 
-      this.year = dayjs().year();
+      this.displayedYear = dayjs().year();
    }
 }
 </script>

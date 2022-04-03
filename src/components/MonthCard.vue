@@ -14,19 +14,20 @@
 
       <div class="month-days">
             <!-- Previous month days -->
-            <div class="month-day other-month-day"
+            <div class="other-month-day"
                v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i }`">
                {{ prevMonthDays +  i - firstDayWeekDay + 1 }}
             </div>
 
             <!-- Month days -->
             <div class="month-day"
-               v-for="(el,i) in monthDays" :key="`${ month }-${ i }`">
+               v-for="(el,i) in monthDays" :key="`${ month }-${ i }`"
+               :class=" isToday(year, monthNum, i + 1) ? 'today' : '' ">
                {{ i + 1 }}
             </div>
 
             <!-- Next month days -->
-            <div class="month-day other-month-day"
+            <div class="other-month-day"
                v-for="(el,i) in nextMonthDays" :key="`${ month }-next-${ i }`">
                {{ i + 1 }}
             </div>
@@ -77,6 +78,9 @@ export default {
    methods: {
       capitalizeString: function(string) {
          return string.charAt(0).toUpperCase() + string.slice(1);
+      },
+      isToday: function(year, month, day) {
+         return dayjs(`${ year }-${ month + 1 }-${ day }`).isToday();
       }
    },
    mounted() {
@@ -123,7 +127,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
 
-      .month-day {
+      & > div {
          width: calc(100% / 7);
          padding: 4px 0;
          margin-bottom: 25px;
@@ -131,16 +135,19 @@ export default {
          font-size: 14px;
          font-weight: 700;
          font-family: 'Lato', sans-serif;
+      }
+
+      .other-month-day {
+         color: rgba($color: white, $alpha: 0.1);
+         cursor: default;
+      }
+
+      .month-day {
          color: rgba($color: white, $alpha: 0.6);
          cursor: pointer;
 
          &:hover {
             color: rgba($color: white, $alpha: 0.75);
-         }
-
-         &.other-month-day {
-            color: rgba($color: white, $alpha: 0.1);
-            cursor: default;
          }
 
          &.today {
