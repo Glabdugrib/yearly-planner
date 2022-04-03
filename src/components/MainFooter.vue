@@ -1,0 +1,88 @@
+<template>
+   <footer id="footer">
+      <div class="credits">
+         <div class="credits_info">
+            <p>©2022 - YearlyPlanner</p>
+            <p>by Simone Sada aka <a href="https://github.com/Glabdugrib">@Glabdugrib</a></p>
+         </div>
+         <p class="credits_built">Built with Vue 2</p>
+      </div>
+   </footer>
+</template>
+
+<script>
+export default {
+   name: 'MainFooter'
+}
+</script>
+
+<style lang="scss" scoped>
+
+#footer {
+   padding: 50px 20px 20px 20px;
+   display: flex;
+   justify-content: center;
+
+   .credits {
+      max-width: 1000px;
+      flex-grow: 1;
+      padding: 10px 20px;
+      background-color: rgba(black, 0.35);
+      border-radius: 10px;
+      color: rgba($color: white, $alpha: 0.7);
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      line-height: 30px;
+      word-spacing: 3px;
+
+      a {
+         font-weight: 700;
+         transition: color ease-in-out 0.2s;
+
+         &:hover {
+            color: #FC4F4F;
+         }
+      }
+
+      .credits_info {
+         display: flex;
+         justify-content: center;
+         gap: 5px;
+      }
+
+      .credits_with {
+         font-size: 0.9em;
+      }
+   }
+}
+
+// M
+@media screen and (max-width: 768px) {
+
+   #footer {
+
+      .credits {
+         font-size: 16px;
+      }
+   }
+}
+
+// S
+@media screen and (max-width: 532px) {
+
+   #footer {
+      padding: 50px 30px 20px 30px;
+
+      .credits {
+         font-size: 15px;
+
+         .credits_info {
+            gap: 0;
+            flex-direction: column;
+         }
+      }
+   }
+}
+
+</style>

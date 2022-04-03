@@ -5,8 +5,10 @@
 
       <Main />
 
+      <Footer />
+
       <!-- Da far apparire solo in modalità desktop (non mobile) -->
-      <a href="#" class="scroll-up-btn"> 
+      <a href="#header" class="scroll-up-btn"> 
          <i class="fa-solid fa-arrow-up"></i>
       </a>
    </div>
@@ -15,6 +17,7 @@
 <script>
 import Header from './components/MainHeader.vue';
 import Main from './components/MainContent.vue';
+import Footer from './components/MainFooter.vue';
 
 // Import DayJs
 import dayjs from 'dayjs';
@@ -33,7 +36,8 @@ export default {
    name: 'App',
    components: {
       Header,
-      Main
+      Main,
+      Footer
    }
 }
 </script>
@@ -71,7 +75,7 @@ body {
    position: relative;
    // height: 200vh;
    padding: 0 2.5vw; // è corretto?
-   margin-bottom: 60px;
+   // margin-bottom: 60px;
 }
 
 .container {

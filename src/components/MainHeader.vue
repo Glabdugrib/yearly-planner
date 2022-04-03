@@ -1,5 +1,5 @@
 <template>
-   <header>
+   <header id="header">
       <div class="main-title">
          <figure class="logo-wrapper">
             <img src="../assets/img/akita-logo.png" alt="" class="logo">
@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/_variables.scss';
 
-header {
+#header {
    padding: 30px 0;
    display: flex;
    flex-direction: column;

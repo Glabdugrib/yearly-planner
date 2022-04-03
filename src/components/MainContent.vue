@@ -1,5 +1,5 @@
 <template>
-   <main>
+   <main id="main-content">
       <div class="container">
 
          <!-- Titolo e controlli -->
@@ -72,7 +72,7 @@ export default {
 
 <style lang="scss" scoped>
 
-main {
+#main-content {
    // border: 1px solid white;
 
    .year {

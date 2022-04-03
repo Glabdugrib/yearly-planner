@@ -101,7 +101,7 @@ export default {
    background-color: rgba(white, 0.05);
 
    .month-name {
-      padding: 10px 0;
+      padding: 15px 0;
       font-family: 'Lato', sans-serif;
       font-size: 18px;
       font-weight: 700;
@@ -159,13 +159,21 @@ export default {
    }
 }
 
-// L
-@media screen and (max-width: 992px) {
+// XL
+@media screen and (max-width: 1200px) {
 
    .month-card {
       width:  calc( ( 100% - 15px * 2 ) / 3 );
    }
 }
+
+// L
+// @media screen and (max-width: 992px) {
+
+//    .month-card {
+//       width:  calc( ( 100% - 15px * 2 ) / 3 );
+//    }
+// }
 
 // M
 @media screen and (max-width: 768px) {
@@ -176,7 +184,7 @@ export default {
 }
 
 // S
-@media screen and (max-width: 478px) {
+@media screen and (max-width: 532px) {
 
    .month-card {
       width:  100%;
