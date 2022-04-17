@@ -5,6 +5,8 @@
 
       <Main />
 
+      <EventEditor />
+
       <Footer />
 
       <!-- Da far apparire solo in modalità desktop (non mobile) -->
@@ -17,6 +19,7 @@
 <script>
 import Header from './components/MainHeader.vue';
 import Main from './components/MainContent.vue';
+import EventEditor from './components/EventEditor.vue';
 import Footer from './components/MainFooter.vue';
 
 // Import DayJs
@@ -37,6 +40,7 @@ export default {
    components: {
       Header,
       Main,
+      EventEditor,
       Footer
    }
 }
@@ -48,7 +52,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
 #app {
-//   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -73,9 +76,7 @@ body {
    background-color: $main-bg;
    cursor: default;
    position: relative;
-   // height: 200vh;
-   padding: 0 2.5vw; // è corretto?
-   // margin-bottom: 60px;
+   padding: 0 2.5vw;
 }
 
 .container {
@@ -86,6 +87,10 @@ body {
 img {
    display: block;
    max-width: 100%;
+}
+
+ul, ol {
+   list-style: none;
 }
 
 a {
@@ -108,16 +113,28 @@ button {
    display: flex;
    justify-content: center;
    align-items: center;
-   // border: 1px solid black;
    border-radius: 5px;
-   font-size: 20px;
-   color: white;
-   background-color: rgba($color: black, $alpha: 0.3);
+   font-size: 20px; // <--
+   color: white;  // <--
+   background-color: rgba($color: black, $alpha: 0.3);  // <--
    opacity: 0.5;
 
    &:hover {
       opacity: 1;
    }
 }
+
+// TO DO
+   // colors
+   // fonts
+   // em/rem fotn size
+   // check user locale date
+   // aggiungere funzionalità per altri browser
+   // scorrimento automatico orizzonatale nome evento quando in hover
+   // linee colorate sul planner
+   // decidere quante linee sono visibili
+   // aggiungere date inizio/fine evento sulla legenda
+   // aggiungere limite di caratteri al nome evento
+   // spostare legenda in basso in versione mobile
 
 </style>

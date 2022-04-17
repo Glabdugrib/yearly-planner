@@ -1,0 +1,55 @@
+@import './variables';
+
+@mixin colors-bg {
+   &.orange {
+      background-color: $event-orange;
+   }
+
+   &.redorange {
+      background-color: $event-redorange;
+   }
+
+   &.red {
+      background-color: $event-red;
+   }
+
+   &.ruby {
+      background-color: $event-ruby;
+   }
+
+   &.magenta {
+      background-color: $event-magenta;
+   }
+
+   &.purple {
+      background-color: $event-purple;
+   }
+
+   &.blue {
+      background-color: $event-blue;
+   }
+
+   &.azure {
+      background-color: $event-azure;
+   }
+
+   &.lime {
+      background-color: $event-lime;
+   }
+
+   &.green {
+      background-color: $event-green;
+   }
+
+   &.white {
+      background-color: $event-white;
+   }
+
+   &.grey {
+      background-color: $event-grey;
+   }
+
+   &.black {
+      background-color: $event-black;
+   }
+}

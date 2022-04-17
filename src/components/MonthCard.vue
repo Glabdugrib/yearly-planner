@@ -12,7 +12,9 @@
          </div>
       </div>
 
+      <!-- Months' days -->
       <div class="month-days">
+
             <!-- Previous month days -->
             <div class="other-month-day"
                v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i }`">
@@ -22,8 +24,11 @@
             <!-- Month days -->
             <div class="month-day"
                v-for="(el,i) in monthDays" :key="`${ month }-${ i }`"
-               :class=" isToday(year, monthNum, i + 1) ? 'today' : '' ">
+               :class=" isToday(year, monthNum, i + 1) ? 'today' : '' "
+               @click="openEventEditor( i )"
+               :data-date="toStringDate(i+1)">
                {{ i + 1 }}
+               <!-- <div class="event-label"></div> -->
             </div>
 
             <!-- Next month days -->
@@ -37,6 +42,7 @@
 
 <script>
 import dayjs from 'dayjs';
+import state from '../store.js';
 
 export default {
    name: 'MonthCard',
@@ -56,7 +62,7 @@ export default {
    },
    data() {
       return {
-         weekDays: [],
+         weekDays: state.weekDays,
       }
    },
    computed: {
@@ -81,13 +87,22 @@ export default {
       },
       isToday: function(year, month, day) {
          return dayjs(`${ year }-${ month + 1 }-${ day }`).isToday();
+      },
+      openEventEditor: function(day) {
+         state.eventEditorOpen = true;
+         state.editor.startDate = new Date(this.year, this.monthNum, day +1, 2); // aggiunte 2h per il fuso USA - Europa
+      },
+      toStringDate: function(dayParam) {
+         const year = this.year;
+
+         let month = this.monthNum + 1;
+         month < 10 ? month = `0${month}` : '';
+
+         let day = dayParam;
+         day < 10 ? day = `0${day}` : '';
+
+         return `${year}-${month}-${day}`;
       }
-   },
-   mounted() {
-      const weekDays = dayjs.weekdays(); // operazione ripetuta per ogni mese, ha senso spostarla nel backend?
-      weekDays.forEach(weekDay => { // italian words come lowercase
-         this.weekDays.push( this.capitalizeString(weekDay) );
-      });
    }
 }
 </script>
@@ -97,16 +112,15 @@ export default {
 .month-card {
    border-radius: 8px;
    width:  calc( ( 100% - 15px * 3 ) / 4 );
-   // min-height: 200px;
-   background-color: rgba(white, 0.05);
+   background-color: rgba(white, 0.05); // <--
 
    .month-name {
       padding: 15px 0;
-      font-family: 'Lato', sans-serif;
-      font-size: 18px;
+      font-family: 'Lato', sans-serif; // <--
+      font-size: 18px; // <--
       font-weight: 700;
       text-align: center;
-      color: white;
+      color: white; // <--
    }
 
    .month-week-days {
@@ -114,10 +128,10 @@ export default {
       margin-bottom: 10px;
 
       .month-week-day {
-         font-family: 'Lato', sans-serif;
-         font-size: 16px;
+         font-family: 'Lato', sans-serif; // <--
+         font-size: 16px; // <--
          font-weight: 700;
-         color: rgba($color: white, $alpha: 0.3);
+         color: rgba($color: white, $alpha: 0.3); // <--
          width: calc(100% / 7);
          text-align: center;
       }
@@ -132,34 +146,45 @@ export default {
          padding: 4px 0;
          margin-bottom: 25px;
          text-align: center;
-         font-size: 14px;
+         font-size: 14px; // <--
          font-weight: 700;
-         font-family: 'Lato', sans-serif;
+         font-family: 'Lato', sans-serif; // <--
       }
 
       .other-month-day {
-         color: rgba($color: white, $alpha: 0.1);
+         color: rgba($color: white, $alpha: 0.1); // <--
          cursor: default;
       }
 
       .month-day {
-         color: rgba($color: white, $alpha: 0.6);
+         color: rgba($color: white, $alpha: 0.6); // <--
          cursor: pointer;
+         position: relative;
 
          &:hover {
-            color: rgba($color: white, $alpha: 0.75);
+            color: rgba($color: white, $alpha: 0.75); // <--
          }
 
          &.today {
-            background-color: rgb(221, 221, 221);
-            color: rgb(51, 51, 51);
+            background-color: rgb(221, 221, 221); // <--
+            color: rgb(51, 51, 51); // <--
             border-radius: 15px;
+         }
+
+         .event-label {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            height: 7px;
+            // border-radius: 2px;
+            background-color: yellow;
          }
       }
    }
 }
 
-// XL
+// XL screens
 @media screen and (max-width: 1200px) {
 
    .month-card {
@@ -167,15 +192,7 @@ export default {
    }
 }
 
-// L
-// @media screen and (max-width: 992px) {
-
-//    .month-card {
-//       width:  calc( ( 100% - 15px * 2 ) / 3 );
-//    }
-// }
-
-// M
+// M screens
 @media screen and (max-width: 768px) {
 
    .month-card {
@@ -183,7 +200,7 @@ export default {
    }
 }
 
-// S
+// S screens
 @media screen and (max-width: 532px) {
 
    .month-card {

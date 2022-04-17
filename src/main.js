@@ -8,7 +8,6 @@ new Vue({
 }).$mount('#app')
 
 // IMPORT DayJs
-
 import Dayjs from 'vue-dayjs';
 
 Vue.use(Dayjs, {
