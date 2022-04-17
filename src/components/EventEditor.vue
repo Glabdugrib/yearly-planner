@@ -77,14 +77,16 @@ export default {
    methods: {
       selectColor: function(i) {
          state.editor.activeColor = i;
-         console.log( state.editor.activeColor );
+         // console.log( state.editor.activeColor );
       },
       resetEventEditor: function() {
          state.eventEditorOpen = false;
          state.editor.startDate = null;
          state.editor.endDate = null;
+         state.editor.textInput = '';
          this.startDate = null;
          this.endDate = null;
+         this.textInput = '';
       },
       addEvent: function() {         
          state.editor.inputText = this.textInput;

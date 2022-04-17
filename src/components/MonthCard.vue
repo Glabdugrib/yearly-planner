@@ -22,14 +22,21 @@
             </div>
 
             <!-- Month days -->
-            <div class="month-day"
+            <Day
+               v-for="(el,i) in monthDays" :key="`${ month }-${ i }`"
+               :month="month"
+               :monthNum="monthNum"
+               :year="year"
+               :day="i + 1"
+            />
+            <!-- <div class="month-day"
                v-for="(el,i) in monthDays" :key="`${ month }-${ i }`"
                :class=" isToday(year, monthNum, i + 1) ? 'today' : '' "
                @click="openEventEditor( i )"
                :data-date="toStringDate(i+1)">
                {{ i + 1 }}
-               <!-- <div class="event-label"></div> -->
-            </div>
+               <div class="event-label"></div>
+            </div> -->
 
             <!-- Next month days -->
             <div class="other-month-day"
@@ -41,11 +48,15 @@
 </template>
 
 <script>
+import Day from './Day.vue';
 import dayjs from 'dayjs';
 import state from '../store.js';
 
 export default {
    name: 'MonthCard',
+   components: {
+      Day
+   },
    props: {
       month: {
          type: String,
@@ -85,24 +96,24 @@ export default {
       capitalizeString: function(string) {
          return string.charAt(0).toUpperCase() + string.slice(1);
       },
-      isToday: function(year, month, day) {
-         return dayjs(`${ year }-${ month + 1 }-${ day }`).isToday();
-      },
-      openEventEditor: function(day) {
-         state.eventEditorOpen = true;
-         state.editor.startDate = new Date(this.year, this.monthNum, day +1, 2); // aggiunte 2h per il fuso USA - Europa
-      },
-      toStringDate: function(dayParam) {
-         const year = this.year;
+      // isToday: function(year, month, day) {
+      //    return dayjs(`${ year }-${ month + 1 }-${ day }`).isToday();
+      // },
+      // openEventEditor: function(day) {
+      //    state.eventEditorOpen = true;
+      //    state.editor.startDate = new Date(this.year, this.monthNum, day +1, 2); // aggiunte 2h per il fuso USA - Europa
+      // },
+      // toStringDate: function(dayParam) {
+      //    const year = this.year;
 
-         let month = this.monthNum + 1;
-         month < 10 ? month = `0${month}` : '';
+      //    let month = this.monthNum + 1;
+      //    month < 10 ? month = `0${month}` : '';
 
-         let day = dayParam;
-         day < 10 ? day = `0${day}` : '';
+      //    let day = dayParam;
+      //    day < 10 ? day = `0${day}` : '';
 
-         return `${year}-${month}-${day}`;
-      }
+      //    return `${year}-${month}-${day}`;
+      // }
    }
 }
 </script>
@@ -156,31 +167,31 @@ export default {
          cursor: default;
       }
 
-      .month-day {
-         color: rgba($color: white, $alpha: 0.6); // <--
-         cursor: pointer;
-         position: relative;
+      // .month-day {
+      //    color: rgba($color: white, $alpha: 0.6); // <--
+      //    cursor: pointer;
+      //    position: relative;
 
-         &:hover {
-            color: rgba($color: white, $alpha: 0.75); // <--
-         }
+      //    &:hover {
+      //       color: rgba($color: white, $alpha: 0.75); // <--
+      //    }
 
-         &.today {
-            background-color: rgb(221, 221, 221); // <--
-            color: rgb(51, 51, 51); // <--
-            border-radius: 15px;
-         }
+      //    &.today {
+      //       background-color: rgb(221, 221, 221); // <--
+      //       color: rgb(51, 51, 51); // <--
+      //       border-radius: 15px;
+      //    }
 
-         .event-label {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 100%;
-            height: 7px;
-            // border-radius: 2px;
-            background-color: yellow;
-         }
-      }
+      //    .event-label {
+      //       position: absolute;
+      //       left: 0;
+      //       right: 0;
+      //       top: 100%;
+      //       height: 7px;
+      //       // border-radius: 2px;
+      //       background-color: yellow;
+      //    }
+      // }
    }
 }
 

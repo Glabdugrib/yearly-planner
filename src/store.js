@@ -9,12 +9,16 @@ class Event {
       this.id = ++eventCounter;
       this.color = _color;
       this.name = _name;
+
       this.startDate = new Date(_startDate);
+      this.startDate.setHours(0,0,0,0);
+      
       this.endDate = new Date(_endDate);
-      this.eventDays = [];
+      this.endDate.setHours(0,0,0,0);
+
       this.calcEventDays();
-      // const prova = document.querySelectorAll("[data-day='2022-03-09']");
-      console.log( this );
+
+      // console.log( this );
    }
 
    delete() {
@@ -22,25 +26,26 @@ class Event {
    }
 
    calcEventDays() {
-      // console.log('Start: ' + this.startDate);
-      // console.log('End: ' + this.endDate);
       let dayIndex = new Date(this.startDate);
-      // console.log('dayIndex: ');
+      dayIndex.setHours(0,0,0,0);
 
       while (dayIndex.getTime() <= this.endDate.getTime()) {
-         // push dentro array eventDays
-         this.eventDays.push( new Date( dayIndex ) );
-         // console.log( dayIndex );
+         console.log('dayIndex: ' + dayIndex);
+         console.log('endDate: ' + this.endDate);
+         state.eventDays.push({
+            id: this.id,
+            color: this.color,
+            date: new Date( dayIndex ),
+            firstDay: this.startDate.getTime() === dayIndex.getTime(),
+            lastDay: this.endDate.getTime() === dayIndex.getTime()
+         });
          dayIndex.setDate( dayIndex.getDate() + 1 );
       }
-      // console.log( this.eventDays );
    }
-
 }
 
 const state = Vue.observable(
    {
-      // prova: new Event('giallo', 'Testo', '2022-01-01', '2022-01-05'),
       displayedYear: null,
       months: [], // months' names
       weekDays: [], // days' names
@@ -70,39 +75,18 @@ const state = Vue.observable(
          active: false,
          eventId: null
       },
-      // eventCounter: 4,
-      events: [
-         // {
-         //    id: 1,
-         //    color: 'orange',
-         //    name: 'Prova',
-         //    startDate: '2022-01-01',
-         //    endDate: '2022-01-01'
-         // },
-         // {
-         //    id: 2,
-         //    color: 'red',
-         //    name: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-         //    startDate: '2022-01-01',
-         //    endDate: '2022-01-01'
-         // },
-         // {
-         //    id: 3,
-         //    color: 'lime',
-         //    name: 'Another event',
-         //    startDate: '2022-01-01',
-         //    endDate: '2022-01-01'
-         // },
-         // {
-         //    id: 4,
-         //    color: 'black',
-         //    name: 'Ciao, come stai?',
-         //    startDate: '2020-01-01',
-         //    endDate: '2022-01-01'
-         // },
-      ],
+      events: [],
+      eventDays: []
    }
 );
+
+// Eventi prova
+state.events.push( new Event('orange', 'Prova', '2022-01-01', '2022-01-03') );
+state.events.push( new Event('red', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '2022-03-01', '2022-03-01') );
+state.events.push( new Event('lime', 'Another event', '2022-02-01', '2022-02-03') );
+state.events.push( new Event('black', 'Compleanno', '2022-03-09', '2022-03-09') );
+state.events.push( new Event('purple', 'Vacanze', '2023-04-15', '2023-05-20') );
+console.log( state.eventDays );
 
 export default state;
 
@@ -114,18 +98,14 @@ export function pushEvent() {
    const checkDates = Date.parse(state.editor.startDate) && Date.parse(state.editor.endDate);
 
    if( checkDates ) {
-      // const event = {
-      //    id: ++state.eventCounter,
-      //    color: state.colors[ state.editor.activeColor ],
-      //    name: state.editor.inputText === '' ? 'Unlabeled' : state.editor.inputText,
-      //    startDate: state.editor.startDate < state.editor.endDate ? state.editor.startDate : state.editor.endDate,
-      //    endDate: state.editor.startDate < state.editor.endDate ? state.editor.endDate : state.editor.startDate
-      // }
 
-      state.events.push( new Event('giallo', 'Testo', '2022-01-01', '2022-01-05' ) );
-      // state.events.push( event );
-      // console.log(event);
+      state.events.push( new Event(
+         state.colors[ state.editor.activeColor ],
+         state.editor.inputText === '' ? 'Unlabeled' : state.editor.inputText,
+         state.editor.startDate < state.editor.endDate ? state.editor.startDate : state.editor.endDate,
+         state.editor.startDate < state.editor.endDate ? state.editor.endDate : state.editor.startDate
+      ) );
+
       closeEventEditor();
-      // aggiungere reset editor
    } 
 }
