@@ -30,8 +30,8 @@ class Event {
       dayIndex.setHours(0,0,0,0);
 
       while (dayIndex.getTime() <= this.endDate.getTime()) {
-         console.log('dayIndex: ' + dayIndex);
-         console.log('endDate: ' + this.endDate);
+         // console.log('dayIndex: ' + dayIndex);
+         // console.log('endDate: ' + this.endDate);
          state.eventDays.push({
             id: this.id,
             color: this.color,
@@ -86,7 +86,7 @@ state.events.push( new Event('red', 'Lorem ipsum dolor sit amet consectetur adip
 state.events.push( new Event('lime', 'Another event', '2022-02-01', '2022-02-03') );
 state.events.push( new Event('black', 'Compleanno', '2022-03-09', '2022-03-09') );
 state.events.push( new Event('purple', 'Vacanze', '2023-04-15', '2023-05-20') );
-console.log( state.eventDays );
+// console.log( state.eventDays );
 
 export default state;
 
@@ -108,4 +108,14 @@ export function pushEvent() {
 
       closeEventEditor();
    } 
+}
+
+export function eventHover( id ) {
+   state.eventHover.active = true;
+   state.eventHover.eventId = id;
+}
+
+export function eventLeave() {
+   state.eventHover.active = false;
+   state.eventHover.eventId = null;
 }

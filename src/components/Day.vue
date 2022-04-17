@@ -7,7 +7,10 @@
       <div class="label-wrapper">
          <div class="event-label"
          v-for="(event,i) in eventsDays" :key="`${date}-${event.id}-${i}`"
-         :class="[event.color, event.firstDay ? 'first' : '', event.lastDay ? 'last' : '']">
+         :class="[event.color, event.firstDay ? 'first' : '', event.lastDay ? 'last' : '',
+         event.id != eventHover.eventId && eventHover.active ? 'semitransparent' : '']"
+         @mouseenter="eventHoverTrigger( event.id )"
+         @mouseleave="eventLeaveTrigger">
          </div>
       </div>
    </div>
@@ -16,9 +19,16 @@
 <script>
 import state from '../store.js';
 import dayjs from 'dayjs';
+import { eventHover } from '../store.js';
+import { eventLeave } from '../store.js';
 
 export default {
    name: 'DayCard',
+   data() {
+      return {
+         eventHover: state.eventHover,
+      }
+   },
    props: {
       month: {
          type: String,
@@ -73,8 +83,11 @@ export default {
 
          return `${year}-${month}-${day}`;
       },
-      fetchEvents: function() {
-
+      eventHoverTrigger: function( id ) {
+         eventHover( id );
+      },
+      eventLeaveTrigger: function() {
+         eventLeave();
       }
    }
 }
@@ -103,13 +116,12 @@ export default {
          left: 0;
          right: 0;
          top: 100%;
-         // border: 1px solid white;
          min-height: 25px;
          max-height: 25px;
          display: flex;
          flex-direction: column;
          gap: 2px;
-         pointer-events: none;
+         // pointer-events: none;
 
          .event-label {
             width: 100%;
@@ -128,6 +140,10 @@ export default {
 
             &.first.last {
                border-radius: 3px;
+            }
+
+            &.semitransparent {
+               opacity: 0.4;
             }
          }
       }   

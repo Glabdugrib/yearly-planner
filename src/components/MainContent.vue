@@ -25,14 +25,14 @@
                <p class="no-events" v-if="events.length === 0">No events</p>
                <ul class="event_list" v-if="events.length > 0">
                   <li class="event"
-                  v-for="(event,i) in events" :key="`event-${ event.id }`"
+                  v-for="event in events" :key="`event-${ event.id }`"
                   @mouseenter="eventHoverTrigger( event.id )"
-                  @mouseleave="eventHoverLeaveTrigger"
+                  @mouseleave="eventLeaveTrigger"
                   :class="event.id != eventHover.eventId && eventHover.active ? 'semitransparent' : '' "
                   >
                      <div class="event_color-swatch" :class="event.color"></div>
                      <div class="event_name">{{ event.name }}</div>
-                     <div class="event_delete-btn" @click="deleteEvent(i)">
+                     <div class="event_delete-btn" @click="deleteEvent(event.id)">
                         <i class="fa-solid fa-trash-can"></i>
                      </div>
                   </li>
@@ -58,6 +58,8 @@
 import Month from './MonthCard.vue';
 import dayjs from 'dayjs';
 import state from '../store.js';
+import { eventHover } from '../store.js';
+import { eventLeave } from '../store.js';
 
 export default {
    name: 'MainContent',
@@ -80,21 +82,6 @@ export default {
                ( startDateYear < this.displayedYear && endDateYear > this.displayedYear );
          } );
       },
-      // eventsDays: function() {
-      //    const array = [];
-      //    this.events.forEach( el => {
-      //       for(let i = el.startDate; i < el.endDate; i++) {
-      //          const eventDay = {
-      //             day: i,
-      //             id: el.id,
-      //             color: el.color
-      //          }
-      //          array.push(eventDay);
-      //       }
-      //    })
-      //    console.log('Events day: ' + array);
-      //    return array;
-      // },
       displayedYear: function() {
          return state.displayedYear;
       },
@@ -102,11 +89,6 @@ export default {
          return state.months;
       }
    },
-   // watch: {
-   //    eventHover: function() {
-
-   //    }
-   // },
    methods: {
       yearIncrement: function() {
          state.displayedYear++;
@@ -117,19 +99,34 @@ export default {
       capitalizeString: function(string) {
          return string.charAt(0).toUpperCase() + string.slice(1);
       },
-      deleteEvent: function(i) {
-         state.events.splice(i,1);
+      deleteEvent: function(id) {
+         // eliminazione evento da lista eventi
+         for (let i = 0; i < state.events.length; i++) {
+            if( state.events[i].id === id ) {
+               state.events.splice(i,1);
+               i--; // perché una volta eliminato un elemento, quelli successivi slittano di posizione
+            }
+         }
+
+         // eliminazione evento da lista giorni evento
+         for (let i = 0; i < state.eventDays.length; i++) {
+            if( state.eventDays[i].id === id ) {
+               state.eventDays.splice(i,1);
+               i--; // come sopra
+            }
+         }
+
+         // Reset hover
+         this.eventLeaveTrigger();
       },
       openEventEditor: function() {
          state.eventEditorOpen = true;
       },
       eventHoverTrigger: function( id ) {
-         state.eventHover.active = true;
-         state.eventHover.eventId = id;
+         eventHover( id );
       },
-      eventHoverLeaveTrigger: function() {
-         state.eventHover.active = false;
-         state.eventHover.eventId = null;
+      eventLeaveTrigger: function() {
+         eventLeave();
       }
    },
    mounted() {
@@ -149,7 +146,7 @@ export default {
       });
 
       // Reset event hover effect
-      this.eventHoverLeaveTrigger();
+      this.eventLeaveTrigger();
    }
 }
 </script>

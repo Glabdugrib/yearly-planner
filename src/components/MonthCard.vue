@@ -95,25 +95,7 @@ export default {
    methods: {
       capitalizeString: function(string) {
          return string.charAt(0).toUpperCase() + string.slice(1);
-      },
-      // isToday: function(year, month, day) {
-      //    return dayjs(`${ year }-${ month + 1 }-${ day }`).isToday();
-      // },
-      // openEventEditor: function(day) {
-      //    state.eventEditorOpen = true;
-      //    state.editor.startDate = new Date(this.year, this.monthNum, day +1, 2); // aggiunte 2h per il fuso USA - Europa
-      // },
-      // toStringDate: function(dayParam) {
-      //    const year = this.year;
-
-      //    let month = this.monthNum + 1;
-      //    month < 10 ? month = `0${month}` : '';
-
-      //    let day = dayParam;
-      //    day < 10 ? day = `0${day}` : '';
-
-      //    return `${year}-${month}-${day}`;
-      // }
+      }
    }
 }
 </script>
