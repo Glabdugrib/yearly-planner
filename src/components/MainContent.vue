@@ -239,7 +239,7 @@ export default {
                }
 
                .event_name {
-                  font-size: 17px; // <--
+                  font-size: 17px;
                   color: rgba($color: white, $alpha: 0.7);
                   white-space: nowrap;
                   margin-right: 5px;
@@ -315,5 +315,14 @@ export default {
       }
    }
 }
+
+// Touchscreend devices
+@media (hover: none) {
+
+   .event_delete-btn {
+
+      opacity: 1!important;
+   }
+} 
 
 </style>
