@@ -1,6 +1,6 @@
 <template>
    <div class="month-day"
-      :class=" isToday(year, monthNum, day) ? 'today' : '' "
+      :class="[isToday(year, monthNum, day) ? 'today' : '', otherMonth ? 'other-month-day' : '']"
       @click="openEventEditor( day - 1 )"
       >
       {{ day }}
@@ -44,6 +44,10 @@ export default {
       },
       day: {
          type: Number,
+         require
+      },
+      otherMonth: {
+         type: Boolean,
          require
       }
    },
@@ -111,6 +115,15 @@ export default {
          border-radius: 15px;
       }
 
+      &.other-month-day {
+         color: rgba($color: white, $alpha: 0.1); // <--
+         cursor: default;
+
+         &:hover {
+            color: inherit;
+         }
+      }
+
       .label-wrapper {
          position: absolute;
          left: 0;
@@ -146,6 +159,6 @@ export default {
                opacity: 0.4;
             }
          }
-      }   
+      }  
    }
 </style>

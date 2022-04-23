@@ -16,10 +16,19 @@
       <div class="month-days">
 
             <!-- Previous month days -->
-            <div class="other-month-day"
+            <!-- <div class="other-month-day"
                v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i }`">
                {{ prevMonthDays +  i - firstDayWeekDay + 1 }}
-            </div>
+            </div> -->
+
+            <Day
+               v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i }`"
+               :month="month"
+               :monthNum="monthNum - 1"
+               :year="year"
+               :day="prevMonthDays +  i - firstDayWeekDay + 1"
+               :otherMonth="true"
+            />
 
             <!-- Month days -->
             <Day
@@ -28,6 +37,7 @@
                :monthNum="monthNum"
                :year="year"
                :day="i + 1"
+               :otherMonth="false"
             />
             <!-- <div class="month-day"
                v-for="(el,i) in monthDays" :key="`${ month }-${ i }`"
@@ -39,10 +49,19 @@
             </div> -->
 
             <!-- Next month days -->
-            <div class="other-month-day"
+            <!-- <div class="other-month-day"
                v-for="(el,i) in nextMonthDays" :key="`${ month }-next-${ i }`">
                {{ i + 1 }}
-            </div>
+            </div> -->
+
+            <Day
+               v-for="(el,i) in nextMonthDays" :key="`${ month }-next-${ i }`"
+               :month="month"
+               :monthNum="monthNum + 1"
+               :year="year"
+               :day="i + 1"
+               :otherMonth="true"
+            />
       </div>
    </div>
 </template>
@@ -148,32 +167,6 @@ export default {
          color: rgba($color: white, $alpha: 0.1); // <--
          cursor: default;
       }
-
-      // .month-day {
-      //    color: rgba($color: white, $alpha: 0.6); // <--
-      //    cursor: pointer;
-      //    position: relative;
-
-      //    &:hover {
-      //       color: rgba($color: white, $alpha: 0.75); // <--
-      //    }
-
-      //    &.today {
-      //       background-color: rgb(221, 221, 221); // <--
-      //       color: rgb(51, 51, 51); // <--
-      //       border-radius: 15px;
-      //    }
-
-      //    .event-label {
-      //       position: absolute;
-      //       left: 0;
-      //       right: 0;
-      //       top: 100%;
-      //       height: 7px;
-      //       // border-radius: 2px;
-      //       background-color: yellow;
-      //    }
-      // }
    }
 }
 

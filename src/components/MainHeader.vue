@@ -13,11 +13,11 @@
       <nav class="header-menu">
          <a href="#" class="header-menu-btn">
             <i class="fa-solid fa-list-check"></i>
-            <span>Other Projects</span>
+            <span><a href="https://github.com/stars/Glabdugrib/lists/projects">Other Projects</a></span>
          </a>
          <a href="#" class="header-menu-btn">
             <i class="fa-solid fa-right-to-bracket"></i>
-            <span>Login</span>
+            <span>Coming soon</span>
          </a>
       </nav>
 

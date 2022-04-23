@@ -3,7 +3,7 @@
       <div class="credits">
          <div class="credits_info">
             <p>©2022 - YearlyPlanner</p>
-            <p>by Simone Sada aka <a href="https://github.com/Glabdugrib">@Glabdugrib</a></p>
+            <p>by Simone Sada aka <a href="https://github.com/stars/Glabdugrib/lists/projects">@Glabdugrib</a></p>
          </div>
          <p class="credits_built">Built with Vue 2</p>
       </div>
