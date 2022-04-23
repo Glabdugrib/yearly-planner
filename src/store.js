@@ -35,6 +35,7 @@ class Event {
          state.eventDays.push({
             id: this.id,
             color: this.color,
+            name: this.name,
             date: new Date( dayIndex ),
             firstDay: this.startDate.getTime() === dayIndex.getTime(),
             lastDay: this.endDate.getTime() === dayIndex.getTime()

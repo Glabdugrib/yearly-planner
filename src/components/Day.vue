@@ -11,6 +11,7 @@
          event.id != eventHover.eventId && eventHover.active ? 'semitransparent' : '']"
          @mouseenter="eventHoverTrigger( event.id )"
          @mouseleave="eventLeaveTrigger">
+            <div class="event-label-name">{{ event.name }}</div>
          </div>
       </div>
    </div>
@@ -140,6 +141,7 @@ export default {
             width: 100%;
             flex-grow: 1;
             max-height: 7px;
+            position: relative;
 
             @include colors-bg;
 
@@ -157,6 +159,24 @@ export default {
 
             &.semitransparent {
                opacity: 0.4;
+            }
+
+            &:hover {
+
+               .event-label-name {
+                  display: block;
+               }
+            }
+
+            .event-label-name {
+               display: none;
+               position: absolute;
+               bottom: calc( 100% + 8px );
+               padding: 5px;
+               background-color: rgba($color: #000000, $alpha: 0.5);
+               color: white;
+               white-space: nowrap;
+               border-radius: 3px;
             }
          }
       }  
