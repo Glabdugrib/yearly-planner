@@ -3,6 +3,21 @@ import Vue from 'vue';
 
 let eventCounter = 0;
 
+function sortEvents(a,b) {
+
+   if( a.startDate < b.startDate ) {
+      return -1;
+   } else if( a.startDate > b.startDate ) {
+      return 1;
+   } else if( a.endDate < b.endDate ) {
+      return -1;
+   } else if( a.endDate > b.endDate ) {
+      return 1;
+   } else {
+      return 0;
+   }
+}
+
 class Event {
 
    constructor(_color, _name, _startDate, _endDate) {
@@ -37,11 +52,23 @@ class Event {
             color: this.color,
             name: this.name,
             date: new Date( dayIndex ),
-            firstDay: this.startDate.getTime() === dayIndex.getTime(),
-            lastDay: this.endDate.getTime() === dayIndex.getTime()
+            isfirstDay: this.startDate.getTime() === dayIndex.getTime(),
+            islastDay: this.endDate.getTime() === dayIndex.getTime(),
+            startDate: this.startDate,
+            endDate: this.endDate
          });
          dayIndex.setDate( dayIndex.getDate() + 1 );
+
+         // Sort
+         state.eventDays.sort( sortEvents );
       }
+   }
+
+   pushIntoArray() {
+      state.events.push( this );
+
+      // Ordina  events array
+      state.events.sort( sortEvents );
    }
 }
 
@@ -82,11 +109,25 @@ const state = Vue.observable(
 );
 
 // Eventi prova
-state.events.push( new Event('orange', 'Prova', '2022-01-01', '2022-01-03') );
-state.events.push( new Event('red', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '2022-03-01', '2022-03-01') );
-state.events.push( new Event('lime', 'Another event', '2022-02-01', '2022-02-03') );
-state.events.push( new Event('black', 'Compleanno', '2022-03-09', '2022-03-09') );
-state.events.push( new Event('purple', 'Vacanze', '2023-04-15', '2023-05-20') );
+let event1 = new Event('orange', 'Prova', '2022-01-01', '2022-01-03');
+let event2 = new Event('red', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '2022-03-01', '2022-03-01');
+let event3 = new Event('lime', 'Another event', '2022-02-01', '2022-02-03');
+let event4 = new Event('black', 'Compleanno', '2022-03-09', '2022-03-09');
+let event5 = new Event('purple', 'Vacanze', '2023-04-15', '2023-05-20');
+
+event1.pushIntoArray();
+event2.pushIntoArray();
+event3.pushIntoArray();
+event4.pushIntoArray();
+event5.pushIntoArray();
+
+// state.events.push( new Event('orange', 'Prova', '2022-01-01', '2022-01-03') );
+// state.events.push( new Event('red', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '2022-03-01', '2022-03-01') );
+// state.events.push( new Event('lime', 'Another event', '2022-02-01', '2022-02-03') );
+// state.events.push( new Event('black', 'Compleanno', '2022-03-09', '2022-03-09') );
+// let eventoProva = new Event('black', 'Compleanno', '2022-03-09', '2022-03-09');
+// eventoProva.pushIntoArray();
+// state.events.push( new Event('purple', 'Vacanze', '2023-04-15', '2023-05-20') );
 // console.log( state.eventDays );
 
 export default state;
@@ -100,12 +141,21 @@ export function pushEvent() {
 
    if( checkDates ) {
 
-      state.events.push( new Event(
+      let event = new Event(
          state.colors[ state.editor.activeColor ],
          state.editor.inputText === '' ? 'Unlabeled' : state.editor.inputText,
          state.editor.startDate < state.editor.endDate ? state.editor.startDate : state.editor.endDate,
          state.editor.startDate < state.editor.endDate ? state.editor.endDate : state.editor.startDate
-      ) );
+      );
+
+      event.pushIntoArray();
+
+      // state.events.push( new Event(
+      //    state.colors[ state.editor.activeColor ],
+      //    state.editor.inputText === '' ? 'Unlabeled' : state.editor.inputText,
+      //    state.editor.startDate < state.editor.endDate ? state.editor.startDate : state.editor.endDate,
+      //    state.editor.startDate < state.editor.endDate ? state.editor.endDate : state.editor.startDate
+      // ) );
 
       closeEventEditor();
    } 

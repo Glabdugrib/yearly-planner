@@ -7,7 +7,7 @@
       <div class="label-wrapper">
          <div class="event-label"
          v-for="(event,i) in eventsDays" :key="`${date}-${event.id}-${i}`"
-         :class="[event.color, event.firstDay ? 'first' : '', event.lastDay ? 'last' : '',
+         :class="[event.color, event.isfirstDay ? 'first' : '', event.islastDay ? 'last' : '',
          event.id != eventHover.eventId && eventHover.active ? 'semitransparent' : '']"
          @mouseenter="eventHoverTrigger( event.id )"
          @mouseleave="eventLeaveTrigger">

@@ -22,17 +22,17 @@
             </div> -->
 
             <Day
-               v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i }`"
+               v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i + 1 }`"
                :month="month"
-               :monthNum="monthNum - 1"
-               :year="year"
+               :monthNum="(monthNum - 1) < 0 ? 11 : (monthNum - 1)"
+               :year="(monthNum - 1) < 0 ? (year - 1) : year"
                :day="prevMonthDays +  i - firstDayWeekDay + 1"
                :otherMonth="true"
             />
 
             <!-- Month days -->
             <Day
-               v-for="(el,i) in monthDays" :key="`${ month }-${ i }`"
+               v-for="(el,i) in monthDays" :key="`${ month }-${ i + 1 }`"
                :month="month"
                :monthNum="monthNum"
                :year="year"
@@ -55,10 +55,10 @@
             </div> -->
 
             <Day
-               v-for="(el,i) in nextMonthDays" :key="`${ month }-next-${ i }`"
+               v-for="(el,i) in nextMonthDays" :key="`${ month }-next-${ i + 1 }`"
                :month="month"
-               :monthNum="monthNum + 1"
-               :year="year"
+               :monthNum="(monthNum + 1) > 11 ? 0 : (monthNum + 1)"
+               :year="(monthNum + 1) > 11 ? (year + 1) : year"
                :day="i + 1"
                :otherMonth="true"
             />
