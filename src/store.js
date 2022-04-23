@@ -33,7 +33,7 @@ class Event {
 
       this.calcEventDays();
 
-      // console.log( this );
+      this.pushIntoArray()
    }
 
    delete() {
@@ -109,17 +109,19 @@ const state = Vue.observable(
 );
 
 // Eventi prova
-let event1 = new Event('orange', 'Prova', '2022-01-01', '2022-01-03');
-let event2 = new Event('red', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '2022-03-01', '2022-03-01');
-let event3 = new Event('lime', 'Another event', '2022-02-01', '2022-02-03');
-let event4 = new Event('black', 'Compleanno', '2022-03-09', '2022-03-09');
-let event5 = new Event('purple', 'Vacanze', '2023-04-15', '2023-05-20');
+new Event('blue', 'Holidays', '2022-01-08', '2022-01-13');
+new Event('orange', 'Trip to Berlin', '2022-01-10', '2022-01-12');
+new Event('green', 'Birthday', '2022-03-09', '2022-03-09');
+new Event('red', 'Project', '2022-03-30', '2022-04-03');
+new Event('lime', 'New event', '2022-05-12', '2022-05-13');
+new Event('purple', 'Holidays', '2023-02-15', '2023-02-27');
+new Event('white', 'Dentist appointment', '2021-11-08', '2021-11-08');
 
-event1.pushIntoArray();
-event2.pushIntoArray();
-event3.pushIntoArray();
-event4.pushIntoArray();
-event5.pushIntoArray();
+// event1.pushIntoArray();
+// event2.pushIntoArray();
+// event3.pushIntoArray();
+// event4.pushIntoArray();
+// event5.pushIntoArray();
 
 // state.events.push( new Event('orange', 'Prova', '2022-01-01', '2022-01-03') );
 // state.events.push( new Event('red', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', '2022-03-01', '2022-03-01') );

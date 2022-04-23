@@ -142,6 +142,7 @@ export default {
             flex-grow: 1;
             max-height: 7px;
             position: relative;
+            cursor: pointer;
 
             @include colors-bg;
 
@@ -158,7 +159,7 @@ export default {
             }
 
             &.semitransparent {
-               opacity: 0.4;
+               opacity: 0.3;
             }
 
             &:hover {

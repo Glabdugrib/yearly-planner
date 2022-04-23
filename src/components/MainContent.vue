@@ -229,7 +229,7 @@ export default {
                overflow: hidden;
 
                &.semitransparent {
-                  opacity: 0.4;
+                  opacity: 0.3;
                }
 
                .event_color-swatch {
