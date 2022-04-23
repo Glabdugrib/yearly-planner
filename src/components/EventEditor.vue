@@ -58,6 +58,7 @@ export default {
       }
    },
    computed: {
+      // selected color in the event editor
       activeColor: function() {
          return state.editor.activeColor;
       },
@@ -66,7 +67,7 @@ export default {
       }
    },
    watch: {
-      eventEditorOpen: function(newVal) { // serve questa funzione?
+      eventEditorOpen: function(newVal) {
          if( newVal ) {
             this.startDate = state.editor.startDate;
          } else {
@@ -77,8 +78,8 @@ export default {
    methods: {
       selectColor: function(i) {
          state.editor.activeColor = i;
-         // console.log( state.editor.activeColor );
       },
+      // reset function
       resetEventEditor: function() {
          state.eventEditorOpen = false;
          state.editor.startDate = null;
@@ -88,6 +89,7 @@ export default {
          this.endDate = null;
          this.textInput = '';
       },
+      // create new event
       addEvent: function() {         
          state.editor.inputText = this.textInput;
          state.editor.startDate = this.startDate;
@@ -113,9 +115,9 @@ export default {
    max-width: 500px;
    padding: 15px 10px;
    border-radius: 10px 10px 0 0;
-   color: rgba($color: white, $alpha: 0.75); // <--
-   background-color: #19857a;  // <--
-   box-shadow: 0px 0px 15px 0px rgba($color: #000000, $alpha: 0.15);  // <--
+   color: rgba($color: white, $alpha: 0.75);
+   background-color: $event-editor-bg;
+   box-shadow: 0px 0px 15px 0px rgba($color: #000000, $alpha: 0.15);
    transition: all 0.7s;
    transform: translate3d(-50%, 100%, 0px);
    pointer-events: none;
@@ -132,8 +134,7 @@ export default {
    }
 
    h5 {
-      font-family: 'Lato', sans-serif; // <--
-      font-size: 14px; // <--
+      font-size: 14px;
       font-weight: 700;
       margin-bottom: 5px;
    }
@@ -144,9 +145,9 @@ export default {
       border: none;
       border-radius: 2px;
       color: inherit;
-      font-size: 18px; // <--
+      font-size: 18px;
       font-weight: 400;
-      background-color: rgba($color: white, $alpha: 0.2); // <--
+      background-color: rgba($color: white, $alpha: 0.2);
 
       &:focus-visible {
          outline: none;
@@ -172,7 +173,7 @@ export default {
             width: 20px;
             aspect-ratio: 1;
             border-radius: 50%;
-            border: 2px solid rgba($color: white, $alpha: 0.4); // <--
+            border: 2px solid rgba($color: white, $alpha: 0.4);
 
             @include colors-bg;
 
@@ -182,7 +183,7 @@ export default {
             }
 
             &:hover {
-               border: 2px solid rgba($color: white, $alpha: 0.8); // <--
+               border: 2px solid rgba($color: white, $alpha: 0.8);
                cursor: pointer;
             }
          }
@@ -198,19 +199,18 @@ export default {
          width: calc( ( 100% - 5px ) / 2) ;
          padding: 6px 25px;
          border-radius: 4px;
-         background-color: rgb(255, 177, 66); // <--
-         color: white; // <--
-         font-size: 16px; // <--
-         font-family: 'Lato', sans-serif; // <--
+         background-color: $event-editor-btn;
+         color: white;
+         font-size: 16px;
          cursor: pointer;
          font-weight: 700;
          text-transform: uppercase;
-         box-shadow: 2px 2px 0px 0px rgba($color: #000000, $alpha: 0.07); // <--
+         box-shadow: 2px 2px 0px 0px rgba($color: #000000, $alpha: 0.07);
          align-self: center;
 
          &:hover {
-            background-color: rgb(255, 188, 91); // <--
-            box-shadow: 2px 2px 0px 0px rgba($color: #000000, $alpha: 0.1); // <--
+            background-color: $event-editor-btn-hover;
+            box-shadow: 2px 2px 0px 0px rgba($color: #000000, $alpha: 0.1);
          }
       }
    }

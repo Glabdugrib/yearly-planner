@@ -16,11 +16,6 @@
       <div class="month-days">
 
             <!-- Previous month days -->
-            <!-- <div class="other-month-day"
-               v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i }`">
-               {{ prevMonthDays +  i - firstDayWeekDay + 1 }}
-            </div> -->
-
             <Day
                v-for="(el,i) in firstDayWeekDay" :key="`${ month }-prev-${ i + 1 }`"
                :month="month"
@@ -30,7 +25,7 @@
                :otherMonth="true"
             />
 
-            <!-- Month days -->
+            <!-- Actual month days -->
             <Day
                v-for="(el,i) in monthDays" :key="`${ month }-${ i + 1 }`"
                :month="month"
@@ -39,21 +34,8 @@
                :day="i + 1"
                :otherMonth="false"
             />
-            <!-- <div class="month-day"
-               v-for="(el,i) in monthDays" :key="`${ month }-${ i }`"
-               :class=" isToday(year, monthNum, i + 1) ? 'today' : '' "
-               @click="openEventEditor( i )"
-               :data-date="toStringDate(i+1)">
-               {{ i + 1 }}
-               <div class="event-label"></div>
-            </div> -->
 
             <!-- Next month days -->
-            <!-- <div class="other-month-day"
-               v-for="(el,i) in nextMonthDays" :key="`${ month }-next-${ i }`">
-               {{ i + 1 }}
-            </div> -->
-
             <Day
                v-for="(el,i) in nextMonthDays" :key="`${ month }-next-${ i + 1 }`"
                :month="month"
@@ -124,15 +106,14 @@ export default {
 .month-card {
    border-radius: 8px;
    width:  calc( ( 100% - 15px * 3 ) / 4 );
-   background-color: rgba(white, 0.05); // <--
+   background-color: rgba(white, 0.05);
 
    .month-name {
       padding: 15px 0;
-      font-family: 'Lato', sans-serif; // <--
-      font-size: 18px; // <--
+      font-size: 18px;
       font-weight: 700;
       text-align: center;
-      color: white; // <--
+      color: white;
    }
 
    .month-week-days {
@@ -140,10 +121,9 @@ export default {
       margin-bottom: 10px;
 
       .month-week-day {
-         font-family: 'Lato', sans-serif; // <--
-         font-size: 16px; // <--
+         font-size: 16px;
          font-weight: 700;
-         color: rgba($color: white, $alpha: 0.3); // <--
+         color: rgba($color: white, $alpha: 0.3);
          width: calc(100% / 7);
          text-align: center;
       }
@@ -158,13 +138,12 @@ export default {
          padding: 4px 0;
          margin-bottom: 25px;
          text-align: center;
-         font-size: 14px; // <--
+         font-size: 14px;
          font-weight: 700;
-         font-family: 'Lato', sans-serif; // <--
       }
 
       .other-month-day {
-         color: rgba($color: white, $alpha: 0.1); // <--
+         color: rgba($color: white, $alpha: 0.1);
          cursor: default;
       }
    }
@@ -178,7 +157,7 @@ export default {
    }
 }
 
-// M screens
+// Medium screens
 @media screen and (max-width: 768px) {
 
    .month-card {
@@ -186,7 +165,7 @@ export default {
    }
 }
 
-// S screens
+// Small screens
 @media screen and (max-width: 532px) {
 
    .month-card {

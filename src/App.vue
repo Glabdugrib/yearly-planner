@@ -64,8 +64,8 @@ export default {
 
 html {
    scroll-behavior: smooth;
-   // aggiungere funzionalità per altri browser
    user-select: none;
+   font-family: 'Lato', sans-serif;
    
    &::-webkit-scrollbar {
       display: none;
@@ -114,27 +114,14 @@ button {
    justify-content: center;
    align-items: center;
    border-radius: 5px;
-   font-size: 20px; // <--
-   color: white;  // <--
-   background-color: rgba($color: black, $alpha: 0.3);  // <--
+   font-size: 20px;
+   color: white;
+   background-color: rgba($color: black, $alpha: 0.3);
    opacity: 0.5;
 
    &:hover {
       opacity: 1;
    }
 }
-
-// TO DO
-   // colors
-   // fonts
-   // em/rem fotn size
-   // check user locale date
-   // aggiungere funzionalità per altri browser
-   // scorrimento automatico orizzonatale nome evento quando in hover
-   // linee colorate sul planner
-   // decidere quante linee sono visibili
-   // aggiungere date inizio/fine evento sulla legenda
-   // aggiungere limite di caratteri al nome evento
-   // spostare legenda in basso in versione mobile
 
 </style>

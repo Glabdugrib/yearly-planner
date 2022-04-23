@@ -1,13 +1,18 @@
 // COLORS:
 
-   $main-bg: #2B2C2C; // #2b2c2c
+   $main-bg: #2B2C2C;
    $secundary-bg-light: rgba(255, 255, 255, 0.15);
-   $secundary-bg-dark: rgba(255, 255, 255, 0.05);
    $text-light: white;
-   $text: rgba(255, 255, 255, 0.75);
-   // $text-main: ;
-   // $text-dark: ;
 
+   // Anchor
+   $anchor-color: #FC4F4F;
+
+   // Event editor
+   $event-editor-bg: #19857A;
+   $event-editor-btn: rgb(255, 177, 66);
+   $event-editor-btn-hover: rgb(255, 188, 91);
+
+   // Events colors
    $event-orange: #F79F1F;
    $event-redorange: #EE5A24;
    $event-red: #CF4247;
@@ -21,8 +26,3 @@
    $event-white: #C5C5C5;
    $event-grey: #818181;
    $event-black: #181818;
-
-// FONTS:
-
-   // Teko - main title (600)
-   // Lato - everithing else (700)

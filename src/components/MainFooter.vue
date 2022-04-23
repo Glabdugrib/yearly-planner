@@ -3,7 +3,7 @@
       <div class="credits">
          <div class="credits_info">
             <p>©2022 - YearlyPlanner</p>
-            <p>by Simone Sada aka <a href="https://github.com/stars/Glabdugrib/lists/projects">@Glabdugrib</a></p>
+            <p>by <a href="https://www.linkedin.com/in/simone-sada/">Simone Sada</a> aka <a href="https://github.com/stars/Glabdugrib/lists/projects">@Glabdugrib</a></p>
          </div>
          <p class="credits_built">Built with Vue 2</p>
       </div>
@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/_variables.scss';
 
 #footer {
    padding: 50px 20px 20px 20px;
@@ -31,17 +32,18 @@ export default {
       border-radius: 10px;
       color: rgba($color: white, $alpha: 0.7);
       text-align: center;
-      font-family: 'Lato', sans-serif;
       font-size: 17px;
       line-height: 30px;
       word-spacing: 3px;
 
       a {
          font-weight: 700;
+         font-size: 18px;
          transition: color ease-in-out 0.2s;
+         color: rgba($color: $anchor-color, $alpha: 0.7);
 
          &:hover {
-            color: #FC4F4F;
+            color: $anchor-color;
          }
       }
 
@@ -57,7 +59,7 @@ export default {
    }
 }
 
-// M
+// Medium screens
 @media screen and (max-width: 768px) {
 
    #footer {
@@ -68,7 +70,7 @@ export default {
    }
 }
 
-// S
+// Small screens
 @media screen and (max-width: 532px) {
 
    #footer {

@@ -68,7 +68,6 @@ export default {
    },
    data() {
       return {
-         // events: state.events,
          eventHover: state.eventHover,
       }
    },
@@ -100,19 +99,19 @@ export default {
          return string.charAt(0).toUpperCase() + string.slice(1);
       },
       deleteEvent: function(id) {
-         // eliminazione evento da lista eventi
+         // deletes event from events array
          for (let i = 0; i < state.events.length; i++) {
             if( state.events[i].id === id ) {
                state.events.splice(i,1);
-               i--; // perché una volta eliminato un elemento, quelli successivi slittano di posizione
+               i--; // decrement because when and element is deleted the others change position
             }
          }
 
-         // eliminazione evento da lista giorni evento
+         // deletes event from eventsDays array
          for (let i = 0; i < state.eventDays.length; i++) {
             if( state.eventDays[i].id === id ) {
                state.eventDays.splice(i,1);
-               i--; // come sopra
+               i--; // decrement because when and element is deleted the others change position
             }
          }
 
@@ -122,9 +121,11 @@ export default {
       openEventEditor: function() {
          state.eventEditorOpen = true;
       },
+      // triggers hover effect on event and labels with same id
       eventHoverTrigger: function( id ) {
          eventHover( id );
       },
+      // removes hover effect on event and labels with same id
       eventLeaveTrigger: function() {
          eventLeave();
       }
@@ -167,29 +168,28 @@ export default {
 
       .year-btn {
          padding: 3px 5px 0 5px;
-         font-size: 21px; // <--
-         color: rgba($color: white, $alpha: 0.5);  // <--
+         font-size: 21px;
+         color: rgba($color: white, $alpha: 0.5);
 
          &:hover {
-            color: rgba($color: white, $alpha: 0.75);  // <--
+            color: rgba($color: white, $alpha: 0.75);
          }
       }
 
       .year-title {
-         font-size: 35px;  // <--
+         font-size: 35px;
          font-weight: 700;
-         font-family: 'Lato', sans-serif;  // <--
-         color: white;  // <--
+         color: white;
       }
 
       .add-event-btn {
          position: absolute;
          right: 0;
          font-size: 35px;  // <--
-         color: rgba($color: white, $alpha: 0.8);  // <--
+         color: rgba($color: white, $alpha: 0.8);
 
          &:hover {
-            color: rgba($color: white, $alpha: 1);  // <--
+            color: rgba($color: white, $alpha: 1);
          }
       }
    }
@@ -203,16 +203,14 @@ export default {
          min-height: 200px;
 
          .planner-legend_title {
-            font-family: 'Lato', sans-serif;  // <--
-            font-size: 16px;  // <--
+            font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
-            color: rgba($color: white, $alpha: 0.6);  // <--
+            color: rgba($color: white, $alpha: 0.6);
             margin-bottom: 5px;
          }
 
          .no-events {
-            font-family: 'Lato', sans-serif;
             font-size: 18px;
             color: white;
          }
@@ -241,9 +239,8 @@ export default {
                }
 
                .event_name {
-                  font-family: 'Lato', sans-serif; // <--
                   font-size: 17px; // <--
-                  color: rgba($color: white, $alpha: 0.7); // <--
+                  color: rgba($color: white, $alpha: 0.7);
                   white-space: nowrap;
                   margin-right: 5px;
                }
@@ -256,8 +253,8 @@ export default {
                   display: flex;
                   justify-content: center;
                   align-items: center;
-                  color: rgba($color: white, $alpha: 0.9); // <--
-                  font-size: 14px; // <--
+                  color: rgba($color: white, $alpha: 0.9);
+                  font-size: 14px;
                   opacity: 0;
                   transition: opacity ease-in-out 0.3s;
                   z-index: 3;
@@ -274,20 +271,20 @@ export default {
                         to left,
                         rgba($color: $main-bg, $alpha: 1) 50%,
                         rgba($color: $main-bg, $alpha: 0)
-                     );  // <--
+                     );
                      z-index: -1;
                      pointer-events: none;
                   }
 
                   &:hover {
-                     color: #FC4F4F;  // <--
+                     color: #FC4F4F;
                   }
                }
 
                &:hover {
 
                   .event_name {
-                     color: rgba($color: white, $alpha: 0.9);  // <--
+                     color: rgba($color: white, $alpha: 0.9);
                   }
 
                   .event_delete-btn {

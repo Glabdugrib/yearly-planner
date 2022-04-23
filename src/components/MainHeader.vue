@@ -58,10 +58,10 @@ export default {
 
       .logo-title {
          padding-top: 12px;
-         font-family: 'Teko', sans-serif; // <--
-         font-size: 56px; // <--
+         font-family: 'Teko', sans-serif;
+         font-size: 56px;
          font-weight: 600;
-         color: $text-light; // <--
+         color: $text-light;
       }
    }
 
@@ -69,27 +69,26 @@ export default {
       display: flex;
       justify-content: center;
       gap: 10px;
-      font-family: 'Lato', sans-serif; // <--
 
       .header-menu-btn {
          padding: 5px 10px;
          display: flex;
          align-items: center;
-         color: rgba(255, 255, 255, 0.75);  // <--
-         background-color: $secundary-bg-light;  // <--
+         color: rgba(255, 255, 255, 0.75);
+         background-color: $secundary-bg-light;
          border-radius: 3px;
 
          &:hover {
-            color: white;  // <--
+            color: white;
          }
 
          i {
-            font-size: 18px; // <--
+            font-size: 18px;
             margin-right: 5px;
          }
 
          span {
-            font-size: 14px; // <--
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
          }
@@ -105,7 +104,7 @@ export default {
       .main-title {
 
          .logo-title {
-            font-size: 51px; // <--
+            font-size: 51px;
          }
       }
    }

@@ -1,16 +1,19 @@
 <template>
+   <!-- Day card -->
    <div class="month-day"
       :class="[isToday(year, monthNum, day) ? 'today' : '', otherMonth ? 'other-month-day' : '']"
       @click="openEventEditor( day - 1 )"
       >
       {{ day }}
       <div class="label-wrapper">
+         <!-- Event colored label -->
          <div class="event-label"
          v-for="(event,i) in eventsDays" :key="`${date}-${event.id}-${i}`"
          :class="[event.color, event.isfirstDay ? 'first' : '', event.islastDay ? 'last' : '',
          event.id != eventHover.eventId && eventHover.active ? 'semitransparent' : '']"
          @mouseenter="eventHoverTrigger( event.id )"
          @mouseleave="eventLeaveTrigger">
+            <!-- Event name -->
             <div class="event-label-name">{{ event.name }}</div>
          </div>
       </div>
@@ -47,7 +50,7 @@ export default {
          type: Number,
          require
       },
-      otherMonth: {
+      otherMonth: { // tells if the date belongs to the previous or next month
          type: Boolean,
          require
       }
@@ -58,24 +61,21 @@ export default {
          date.setHours(0,0,0,0);
          return date;
       },
+      // array of objects representing each day for each event and various information
       eventsDays: function() {
          return state.eventDays.filter( event => {
-            // const startDateYear = dayjs(event.startDate).year();
-            // const endDateYear = dayjs(event.endDate).year();
             return event.date.getTime() === this.date.getTime();
-            // return startDateYear === this.displayedYear ||
-            //    endDateYear === this.displayedYear ||
-            //    ( startDateYear < this.displayedYear && endDateYear > this.displayedYear );
          } );
       },
    },
    methods: {
+      // return if a date is today
       isToday: function(year, month, day) {
          return dayjs(`${ year }-${ month + 1 }-${ day }`).isToday();
       },
       openEventEditor: function(day) {
          state.eventEditorOpen = true;
-         state.editor.startDate = new Date(this.year, this.monthNum, day +1, 2); // aggiunte 2h per il fuso USA - Europa
+         state.editor.startDate = new Date(this.year, this.monthNum, day +1, 2); // +hour ?
       },
       toStringDate: function(dayParam) {
          const year = this.year;
@@ -88,9 +88,11 @@ export default {
 
          return `${year}-${month}-${day}`;
       },
+      // triggers hover effect on event and labels with same id
       eventHoverTrigger: function( id ) {
          eventHover( id );
       },
+      // removes hover effect on event and labels with same id
       eventLeaveTrigger: function() {
          eventLeave();
       }
@@ -102,22 +104,22 @@ export default {
 @import '../assets/scss/_mixins.scss';
 
    .month-day {
-      color: rgba($color: white, $alpha: 0.6); // <--
+      color: rgba($color: white, $alpha: 0.6);
       cursor: pointer;
       position: relative;
 
       &:hover {
-         color: rgba($color: white, $alpha: 0.75); // <--
+         color: rgba($color: white, $alpha: 0.75);
       }
 
       &.today {
-         background-color: rgb(221, 221, 221); // <--
-         color: rgb(51, 51, 51); // <--
+         background-color: rgb(221, 221, 221);
+         color: rgb(51, 51, 51);
          border-radius: 15px;
       }
 
       &.other-month-day {
-         color: rgba($color: white, $alpha: 0.1); // <--
+         color: rgba($color: white, $alpha: 0.1);
          cursor: default;
 
          &:hover {
@@ -135,7 +137,6 @@ export default {
          display: flex;
          flex-direction: column;
          gap: 2px;
-         // pointer-events: none;
 
          .event-label {
             width: 100%;

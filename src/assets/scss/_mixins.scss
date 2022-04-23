@@ -1,5 +1,6 @@
 @import './variables';
 
+// Events colors
 @mixin colors-bg {
    &.orange {
       background-color: $event-orange;
