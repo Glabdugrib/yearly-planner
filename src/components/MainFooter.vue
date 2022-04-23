@@ -38,7 +38,7 @@ export default {
 
       a {
          font-weight: 700;
-         font-size: 18px;
+         // font-size: 18px;
          transition: color ease-in-out 0.2s;
          color: rgba($color: $anchor-color, $alpha: 0.7);
 
