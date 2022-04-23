@@ -126,14 +126,12 @@ export function pushEvent() {
 
    if( checkDates ) {
 
-      let event = new Event(
+      new Event(
          state.colors[ state.editor.activeColor ],
          state.editor.inputText === '' ? 'Unlabeled' : state.editor.inputText,
          state.editor.startDate < state.editor.endDate ? state.editor.startDate : state.editor.endDate,
          state.editor.startDate < state.editor.endDate ? state.editor.endDate : state.editor.startDate
       );
-
-      event.pushIntoArray();
 
       closeEventEditor();
    } 
